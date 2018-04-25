@@ -1,0 +1,62 @@
+{
+  "id": "e52135f0-37d9-11e8-b1d9-739f700aeb77",
+  "name": "CheckQualityGateStatus",
+  "friendlyName": "Check SonarQube Quality Gate Status",
+  "description": "Checks whether quality gate status for the project specified is valid or not",
+  "author": "Emre AKI",
+  "helpMarkDown": "This build task checks quality gate status associated with the project specified. Also, when specified, breaks the build if quality gate is not satisfied.",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "1",
+    "Minor": "7",
+    "Patch": "2"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "Check SonarQube Quality Gate Status",
+  "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
+   "inputs": [
+    {
+      "name": "project_key",
+      "type": "string",
+      "label": "Project Key",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "The key associated with your SonarQube project"
+    },
+    {
+      "name": "sonar_url",
+      "type": "string",
+      "label": "Server URL",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "The URL to your SonarQube server, e.g. http://unitfs:9000."
+    },
+    {
+      "name": "break_build",
+      "type": "boolean",
+      "label": "Break build on quality gate failure",
+      "defaultValue": "false",
+      "required": false,
+      "groupName": "advanced",
+      "helpMarkDown": "Check this option if you want the build to break on a quality gate failure."
+    }
+  ],
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\check_quality_gate.ps1",
+      "workingDirectory": "$(currentDirectory)",
+      "argumentFormat": ""
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "33b402a0-f6b8-11e7-a253-2124081a165c",
+  "name": "DeleteDexmoNugetPackagesTask",
+  "friendlyName": "Delete Dexmo NuGet Packages",
+  "description": "Removes packages matching a given package version pattern from the target feed.",
+  "author": "Emre Aki",
+  "helpMarkDown": "This build task helps remove NuGet packages matching a given package version pattern.",
+  "category": "Utility",
+  "visibility": [
+    "Build"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "1",
+    "Minor": "3",
+    "Patch": "1"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "Delete Dexmo NuGet Packages",
+  "inputs": [
+    {
+      "name": "feedname",
+      "type": "string",
+      "label": "Target Feed Name",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "The target feed name from which the packages will be removed."
+    },
+    {
+      "name": "inc",
+      "type": "string",
+      "label": "Included Package Name Pattern",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "The package versions matching this regex pattern will be removed from the target feed."
+    },
+    {
+      "name": "exc",
+      "type": "string",
+      "label": "Excluded Package Name Pattern",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The package versions matching this regex pattern will be excluded from removal. By default, none will be excluded."
+    }
+  ],
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\delete_nuget_packages.ps1",
+      "workingDirectory": "$(currentDirectory)",
+      "argumentFormat": ""
+    }
+  }
+}
